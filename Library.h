@@ -74,9 +74,13 @@ public:
 
     std::vector<Book> findByAuthor(const std::string& authorName) const {
         std::vector<Book> result;
-        for (const auto& b : books)
-            if (b.getAuthor().getName() == authorName)
+        for (const Book& b : this->books) {
+
+            if (b.getAuthor().getName().find(authorName) != std::string::npos) {
                 result.push_back(b);
+            }
+        }
+
         return result;
     }
 
@@ -90,4 +94,5 @@ public:
                "\nActive loans: " + std::to_string(activeLoans);
     }
 };
+
 
